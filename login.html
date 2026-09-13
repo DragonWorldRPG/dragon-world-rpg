@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DragonWorld RPG - Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #243b55 0%, #141e30 45%, #080c14 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo .dragon {
+            font-size: 55px;
+        }
+
+        .logo h1 {
+            margin: 8px 0 5px;
+            font-size: 32px;
+        }
+
+        .logo p {
+            margin: 0;
+            color: #aeb9c9;
+        }
+
+        .card {
+            background: rgba(20, 28, 42, 0.96);
+            border: 1px solid #34445c;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 25px;
+            background: #0d1420;
+            border-radius: 10px;
+            padding: 4px;
+        }
+
+        .tab {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: #9eabbc;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            background: #273b58;
+            color: white;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 16px;
+            border-radius: 9px;
+            border: 1px solid #3b4a60;
+            background: #0c1320;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6ea8fe;
+        }
+
+        .main-button {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 9px;
+            background: #3b82f6;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .main-button:hover {
+            background: #2563eb;
+        }
+
+        .message {
+            min-height: 22px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #fca5a5;
+        }
+
+        .success {
+            color: #86efac;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .note {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8da1;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <div class="dragon">🐉</div>
+        <h1>DragonWorld RPG</h1>
+        <p>Enter the world of dragons.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="tabs">
+            <button class="tab active" id="loginTab" onclick="showLogin()">
+                Login
+            </button>
+
+            <button class="tab" id="signupTab" onclick="showSignup()">
+                Create Account
+            </button>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="loginForm">
+
+            <h2>Welcome Back! 👋</h2>
+
+            <label for="loginEmail">Email</label>
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+            >
+
+            <label for="loginPassword">Password</label>
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+            >
+
+            <button class="main-button" onclick="login()">
+                🔐 Login
+            </button>
+
+            <div id="loginMessage" class="message"></div>
+
+        </div>
+
+
+        <!-- CREATE ACCOUNT -->
+        <div id="signupForm" class="hidden">
+
+            <h2>Create Your Account 🐉</h2>
+
+            <label for="signupName">Player Name</label>
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Choose your Player Name"
+            >
+
+            <label for="signupEmail">Email</label>
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+            >
+
+            <label for="signupPassword">Password</label>
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create a password"
+            >
+
+            <label for="signupConfirm">Confirm Password</label>
+            <input
+                type="password"
+                id="signupConfirm"
+                placeholder="Confirm your password"
+            >
+
+            <button class="main-button" onclick="signup()">
+                🐉 Create Account
+            </button>
+
+            <div id="signupMessage" class="message"></div>
+
+        </div>
+
+        <div class="note">
+            Your DragonWorld RPG account will be used to save your
+            player progress and game data.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    /*
+     * DragonWorld RPG
+     * Supabase connection
+     */
+
+    const SUPABASE_URL = "https://btwmbbebkxvaxmkvzyqb.supabase.co";
+
+    /*
+     * IMPORTANT:
+     * We will add your Supabase Publishable Key
+     * in the next step.
+     */
+</script>
+
+
+<script>
+
+    function showLogin() {
+
+        document.getElementById("loginForm").classList.remove("hidden");
+        document.getElementById("signupForm").classList.add("hidden");
+
+        document.getElementById("loginTab").classList.add("active");
+        document.getElementById("signupTab").classList.remove("active");
+
+    }
+
+
+    function showSignup() {
+
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("signupForm").classList.remove("hidden");
+
+        document.getElementById("loginTab").classList.remove("active");
+        document.getElementById("signupTab").classList.add("active");
+
+    }
+
+
+    function login() {
+
+        const message = document.getElementById("loginMessage");
+
+        message.className = "message";
+        message.textContent =
+            "Login connection will be activated next.";
+
+    }
+
+
+    function signup() {
+
+        const message = document.getElementById("signupMessage");
+
+        message.className = "message";
+        message.textContent =
+            "Account creation connection will be activated next.";
+
+    }
+
+</script>
+
+</body>
+</html>
