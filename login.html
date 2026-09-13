@@ -208,12 +208,7 @@
 
             <h2>Create Your Account 🐉</h2>
 
-            <label for="signupName">Player Name</label>
-            <input
-                type="text"
-                id="signupName"
-                placeholder="Choose your Player Name"
-            >
+    
 
             <label for="signupEmail">Email</label>
             <input
@@ -326,7 +321,6 @@
 
     async function signup() {
 
-    const name = document.getElementById("signupName").value.trim();
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value;
     const confirm = document.getElementById("signupConfirm").value;
@@ -354,11 +348,7 @@
     const { data, error } = await supabaseClient.auth.signUp({
         email: email,
         password: password,
-        options: {
-            data: {
-                player_name: name
-            }
-        }
+        
     });
 
     if (error) {
