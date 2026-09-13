@@ -527,6 +527,24 @@
     }
 
     checkLogin();
+
+    async function loadPlayerName() {
+
+        const { data: { user } } =
+            await supabaseClient.auth.getUser();
+
+        if (user) {
+
+            const playerName =
+                user.user_metadata?.player_name || "Player";
+
+            document.getElementById("playerName").textContent =
+                "👤 " + playerName;
+        }
+    }
+
+    loadPlayerName();    
+    
 </script>
     
 </body>
