@@ -304,7 +304,7 @@
         </div>
 
         <div class="player-info">
-            <div class="player-name">👤 Player</div>
+            <div class="player-name" id="playerName">👤 Player</div>
 
             <div class="resource">⭐ Lv. 1</div>
             <div class="resource">✨ XP 0 / 100</div>
@@ -503,6 +503,26 @@
     <footer>
         🐉 DragonWorld RPG — Your Dragon Adventure Begins Here
     </footer>
+<script>
+    // Load the saved player name
+    let playerName = localStorage.getItem("dragonWorldPlayerName");
 
+    // Ask for a name if the player doesn't have one yet
+    if (!playerName) {
+        playerName = prompt("Welcome to DragonWorld RPG! 🐉\n\nEnter your Player Name:");
+
+        // Use "Player" if they leave it empty
+        if (!playerName || playerName.trim() === "") {
+            playerName = "Player";
+        }
+
+        // Save the name in the browser
+        localStorage.setItem("dragonWorldPlayerName", playerName.trim());
+    }
+
+    // Display the player's name
+    document.getElementById("playerName").textContent = "👤 " + playerName;
+</script>
+    
 </body>
 </html>
