@@ -621,6 +621,29 @@
 
     async function loadPlayerName() {
 
+    const { data: { user } } =
+        await supabaseClient.auth.getUser();
+
+    if (!user) {
+        return;
+    }
+
+    const playerName =
+        user.user_metadata?.player_name;
+
+    if (playerName) {
+
+        document.getElementById("playerName").textContent =
+            "👤 " + playerName;
+
+        document.getElementById("namePopup").style.display = "none";
+
+    } else {
+
+        document.getElementById("namePopup").style.display = "flex";
+    }
+} 
+
  async function saveGameName() {
 
     const gameName = document.getElementById("gameName").value.trim();
