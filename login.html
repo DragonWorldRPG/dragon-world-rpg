@@ -255,18 +255,14 @@
 
 
 <script>
-    /*
-     * DragonWorld RPG
-     * Supabase connection
-     */
-
     const SUPABASE_URL = "https://btwmbbebkxvaxmkvzyqb.supabase.co";
 
-    /*
-     * IMPORTANT:
-     * We will add your Supabase Publishable Key
-     * in the next step.
-     */
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_gH_HxSuIkm3ug2qJ78WRmg_QIHKbkuj";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
 </script>
 
 
