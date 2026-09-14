@@ -377,6 +377,43 @@
     border-color: #6c63ff;
     color: #ffffff;
 }
+
+.dragon-skills {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.dragon-skills h3 {
+    text-align: left;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+}
+
+.skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background: #0d1120;
+    border: 1px solid #444a6a;
+    border-radius: 10px;
+}
+
+.skill-item span {
+    color: #d6d9e8;
+    font-size: 13px;
+}
+
+.skill-item strong {
+    color: #ffffff;
+    font-size: 14px;
+}
         
     </style>
 
@@ -619,54 +656,30 @@
 
 <div class="dragon-skills">
 
-    <h3>⚔️ Dragon Skills</h3>
+    <h3>⚔️ Skills</h3>
 
-    <div class="skill-card">
-        <div class="skill-name">
-            👊 Punch
-        </div>
-        <div class="skill-type">
-            Normal Attack
-        </div>
-        <div class="skill-power">
-            Attack: 40
-        </div>
-    </div>
+    <div class="skills-grid">
 
-    <div class="skill-card">
-        <div class="skill-name">
-            🌍 Earthquake
+        <div class="skill-item">
+            <span>⚔️ Punch</span>
+            <strong>40</strong>
         </div>
-        <div class="skill-type">
-            Terra Attack
-        </div>
-        <div class="skill-power">
-            Attack: 50
-        </div>
-    </div>
 
-    <div class="skill-card">
-        <div class="skill-name">
-            ☄️ Meteor Shower
+        <div class="skill-item">
+            <span>⛰️ Earthquake</span>
+            <strong>50</strong>
         </div>
-        <div class="skill-type">
-            Terra Attack
-        </div>
-        <div class="skill-power">
-            Attack: 60
-        </div>
-    </div>
 
-    <div class="skill-card">
-        <div class="skill-name">
-            🌵 Tumbleweed
+        <div class="skill-item">
+            <span>⛰️ Tumbleweed</span>
+            <strong>45</strong>
         </div>
-        <div class="skill-type">
-            Terra Attack
+
+        <div class="skill-item">
+            <span>⛰️ Meteor Shower</span>
+            <strong>60</strong>
         </div>
-        <div class="skill-power">
-            Attack: 45
-        </div>
+
     </div>
 
 </div>
