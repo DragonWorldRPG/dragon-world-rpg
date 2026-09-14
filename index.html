@@ -678,6 +678,38 @@
 
     document.getElementById("namePopup").style.display = "none";
 }
+
+    const gameName = document.getElementById("gameName").value.trim();
+    const message = document.getElementById("nameMessage");
+
+    if (!gameName) {
+        message.textContent = "Please enter an in-game name.";
+        return;
+    }
+
+    if (gameName.length < 3) {
+        message.textContent = "Your name must be at least 3 characters.";
+        return;
+    }
+
+    message.textContent = "Saving your name...";
+
+    const { data, error } = await supabaseClient.auth.updateUser({
+        data: {
+            player_name: gameName
+        }
+    });
+
+    if (error) {
+        message.textContent = error.message;
+        return;
+    }
+
+    document.getElementById("playerName").textContent =
+        "👤 " + gameName;
+
+    document.getElementById("namePopup").style.display = "none";
+}
         
         const { data: { user } } =
             await supabaseClient.auth.getUser();
