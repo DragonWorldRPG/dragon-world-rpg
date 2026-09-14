@@ -300,6 +300,29 @@
     margin-bottom: 25px;
 }
 
+.details-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0 25px;
+}
+
+.details-stats div {
+    background: #0d1120;
+    border: 1px solid #444a6a;
+    border-radius: 10px;
+    padding: 12px 8px;
+    color: #b8bdd3;
+    font-size: 13px;
+}
+
+.details-stats strong {
+    display: block;
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 4px;
+}
+        
 .close-details {
     position: absolute;
     top: 12px;
@@ -513,6 +536,25 @@
             Level 1
         </div>
 
+<div class="details-stats">
+
+    <div>
+        ❤️ HP
+        <strong>100</strong>
+    </div>
+
+    <div>
+        ⚔️ Attack
+        <strong>50</strong>
+    </div>
+
+    <div>
+        ⚡ Speed
+        <strong>30</strong>
+    </div>
+
+</div>
+        
         <button class="button" onclick="closeDragonDetails()">
             Close
         </button>
