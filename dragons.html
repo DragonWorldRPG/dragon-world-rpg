@@ -203,6 +203,55 @@
     }
 
 }
+
+.dragon-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.dragon-card {
+    background: #0d1120;
+    border: 1px solid #444a6a;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.dragon-card:hover {
+    transform: translateY(-5px);
+    border-color: #6c63ff;
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.25);
+}
+
+.collection-dragon-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.dragon-card h3 {
+    margin: 8px 0;
+}
+
+.dragon-rarity {
+    color: #d6d9e8;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dragon-elements {
+    color: #72e6a5;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.dragon-level {
+    color: #9da3c0;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
         
     </style>
 
