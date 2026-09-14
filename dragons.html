@@ -301,26 +301,57 @@
 }
 
 .details-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
     margin: 20px 0 25px;
+    text-align: left;
 }
 
-.details-stats div {
+.stat-row {
+    margin-bottom: 18px;
+}
+
+.stat-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.stat-label span {
+    color: #d6d9e8;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.stat-label strong {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.stat-bar {
+    width: 100%;
+    height: 10px;
     background: #0d1120;
     border: 1px solid #444a6a;
     border-radius: 10px;
-    padding: 12px 8px;
-    color: #b8bdd3;
-    font-size: 13px;
+    overflow: hidden;
 }
 
-.details-stats strong {
-    display: block;
-    color: #ffffff;
-    font-size: 16px;
-    margin-top: 4px;
+.stat-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.health-fill {
+    width: 70%;
+}
+
+.attack-fill {
+    width: 50%;
+}
+
+.speed-fill {
+    width: 30%;
 }
         
 .close-details {
@@ -538,20 +569,46 @@
 
 <div class="details-stats">
 
-    <div>
-        ❤️ HP
-        <strong>100</strong>
+    <div class="stat-row">
+
+        <div class="stat-label">
+            <span>❤️ HEALTH</span>
+            <strong>100</strong>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-fill health-fill"></div>
+        </div>
+
     </div>
 
-    <div>
-        ⚔️ Attack
-        <strong>50</strong>
+    <div class="stat-row">
+
+        <div class="stat-label">
+            <span>⚔️ ATTACK</span>
+            <strong>50</strong>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-fill attack-fill"></div>
+        </div>
+
     </div>
 
-    <div>
-        ⚡ Speed
-        <strong>30</strong>
+    <div class="stat-row">
+
+        <div class="stat-label">
+            <span>⚡ SPEED</span>
+            <strong>30</strong>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-fill speed-fill"></div>
+        </div>
+
     </div>
+
+</div>
 
 </div>
         
