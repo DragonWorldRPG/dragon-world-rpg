@@ -419,9 +419,9 @@
             Lv. 1
         </div>
 
-        <button class="button">
-            View Dragon
-        </button>
+        <button class="button" onclick="showDragonDetails('Flame Dragon')">
+    View Dragon
+</button>
 
     </div>
 
@@ -467,9 +467,9 @@
             Lv. 1
         </div>
 
-        <button class="button">
-            View Dragon
-        </button>
+        <button class="button" onclick="showDragonDetails('Sea Dragon')">
+    View Dragon
+</button>
 
     </div>
 
@@ -505,9 +505,9 @@
             Common
         </div>
 
-        <div class="details-element">
-            🌍 Terra
-        </div>
+        <div class="details-element" id="detailsDragonElement">
+    🌍 Terra
+</div>
 
         <div class="details-level">
             Level 1
@@ -525,12 +525,25 @@
 
     function showDragonDetails(dragonName) {
 
-        document.getElementById("detailsDragonName").textContent =
-            dragonName;
+    document.getElementById("detailsDragonName").textContent =
+        dragonName;
 
-        document.getElementById("dragonDetails").style.display =
-            "flex";
+    let element = "🌍 Terra";
+
+    if (dragonName === "Flame Dragon") {
+        element = "🔥 Flame";
     }
+
+    if (dragonName === "Sea Dragon") {
+        element = "🌊 Sea";
+    }
+
+    document.getElementById("detailsDragonElement").textContent =
+        element;
+
+    document.getElementById("dragonDetails").style.display =
+        "flex";
+}
 
     function closeDragonDetails() {
 
