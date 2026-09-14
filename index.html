@@ -601,7 +601,7 @@
 <script>
     const SUPABASE_URL = "https://btwmbbebkxvaxmkvzyqb.supabase.co";
 
-    const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_gH_HxSuIkm3ug2qJ78WRmg_QIHKbkuj";
 
     const supabaseClient = window.supabase.createClient(
         SUPABASE_URL,
@@ -615,117 +615,77 @@
 
         if (!session) {
             window.location.href = "login.html";
+            return;
         }
-    }
 
-    checkLogin();
+        loadPlayerName();
+    }
 
     async function loadPlayerName() {
 
-    const { data: { user } } =
-        await supabaseClient.auth.getUser();
-
-    if (!user) {
-        return;
-    }
-
-    const playerName =
-        user.user_metadata?.player_name;
-
-    if (playerName) {
-
-        document.getElementById("playerName").textContent =
-            "👤 " + playerName;
-
-        document.getElementById("namePopup").style.display = "none";
-
-    } else {
-
-        document.getElementById("namePopup").style.display = "flex";
-    }
-} 
-
- async function saveGameName() {
-
-    const gameName = document.getElementById("gameName").value.trim();
-    const message = document.getElementById("nameMessage");
-
-    if (!gameName) {
-        message.textContent = "Please enter an in-game name.";
-        return;
-    }
-
-    if (gameName.length < 3) {
-        message.textContent = "Your name must be at least 3 characters.";
-        return;
-    }
-
-    message.textContent = "Saving your name...";
-
-    const { data, error } = await supabaseClient.auth.updateUser({
-        data: {
-            player_name: gameName
-        }
-    });
-
-    if (error) {
-        message.textContent = error.message;
-        return;
-    }
-
-    document.getElementById("playerName").textContent =
-        "👤 " + gameName;
-
-    document.getElementById("namePopup").style.display = "none";
-}
-
-    const gameName = document.getElementById("gameName").value.trim();
-    const message = document.getElementById("nameMessage");
-
-    if (!gameName) {
-        message.textContent = "Please enter an in-game name.";
-        return;
-    }
-
-    if (gameName.length < 3) {
-        message.textContent = "Your name must be at least 3 characters.";
-        return;
-    }
-
-    message.textContent = "Saving your name...";
-
-    const { data, error } = await supabaseClient.auth.updateUser({
-        data: {
-            player_name: gameName
-        }
-    });
-
-    if (error) {
-        message.textContent = error.message;
-        return;
-    }
-
-    document.getElementById("playerName").textContent =
-        "👤 " + gameName;
-
-    document.getElementById("namePopup").style.display = "none";
-}
-        
         const { data: { user } } =
             await supabaseClient.auth.getUser();
 
-        if (user) {
+        if (!user) {
+            return;
+        }
 
-            const playerName =
-                user.user_metadata?.player_name || "Player";
+        const playerName =
+            user.user_metadata?.player_name;
+
+        if (playerName) {
 
             document.getElementById("playerName").textContent =
                 "👤 " + playerName;
+
+            document.getElementById("namePopup").style.display = "none";
+
+        } else {
+
+            document.getElementById("namePopup").style.display = "flex";
         }
     }
 
-    loadPlayerName();    
-    
+    async function saveGameName() {
+
+        const gameName =
+            document.getElementById("gameName").value.trim();
+
+        const message =
+            document.getElementById("nameMessage");
+
+        if (!gameName) {
+            message.textContent = "Please enter an in-game name.";
+            return;
+        }
+
+        if (gameName.length < 3) {
+            message.textContent =
+                "Your name must be at least 3 characters.";
+            return;
+        }
+
+        message.textContent = "Saving your name...";
+
+        const { error } =
+            await supabaseClient.auth.updateUser({
+                data: {
+                    player_name: gameName
+                }
+            });
+
+        if (error) {
+            message.textContent = error.message;
+            return;
+        }
+
+        document.getElementById("playerName").textContent =
+            "👤 " + gameName;
+
+        document.getElementById("namePopup").style.display = "none";
+    }
+
+    checkLogin();
 </script>
 <!-- In-Game Name Popup -->
 <div id="namePopup" class="name-popup-overlay">
