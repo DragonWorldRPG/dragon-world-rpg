@@ -658,29 +658,7 @@
 
     <h3>⚔️ Skills</h3>
 
-    <div class="skills-grid">
-
-        <div class="skill-item">
-            <span>⚔️ Punch</span>
-            <strong>40</strong>
-        </div>
-
-        <div class="skill-item">
-            <span>⛰️ Earthquake</span>
-            <strong>50</strong>
-        </div>
-
-        <div class="skill-item">
-            <span>⛰️ Tumbleweed</span>
-            <strong>45</strong>
-        </div>
-
-        <div class="skill-item">
-            <span>⛰️ Meteor Shower</span>
-            <strong>60</strong>
-        </div>
-
-    </div>
+    <div id="dragonSkills" class="skills-grid"></div>
 
 </div>
         
@@ -696,27 +674,77 @@
 
 <script>
 
+    const dragonSkills = {
+
+        "Terra Dragon": [
+            ["⚔️", "Punch", 40],
+            ["⛰️", "Earthquake", 50],
+            ["⛰️", "Tumbleweed", 45],
+            ["⛰️", "Meteor Shower", 60]
+        ],
+
+        "Flame Dragon": [
+            ["⚔️", "Hard Charge", 40],
+            ["🔥", "Flaming Arrows", 50],
+            ["🔥", "Lava Balls", 45],
+            ["🔥", "Nuclear Hit", 60]
+        ],
+
+        "Sea Dragon": [
+            ["⚔️", "Punch", 40],
+            ["🌊", "Flooding", 50],
+            ["🌊", "Tsunami", 45],
+            ["🌊", "Storm", 60]
+        ]
+
+    };
+
+
     function showDragonDetails(dragonName) {
 
-    document.getElementById("detailsDragonName").textContent =
-        dragonName;
+        document.getElementById("detailsDragonName").textContent =
+            dragonName;
 
-    let element = "🌍 Terra";
+        let element = "🌍 Terra";
 
-    if (dragonName === "Flame Dragon") {
-        element = "🔥 Flame";
+        if (dragonName === "Flame Dragon") {
+            element = "🔥 Flame";
+        }
+
+        if (dragonName === "Sea Dragon") {
+            element = "🌊 Sea";
+        }
+
+        document.getElementById("detailsDragonElement").textContent =
+            element;
+
+
+        const skillsContainer =
+            document.getElementById("dragonSkills");
+
+        skillsContainer.innerHTML = "";
+
+
+        dragonSkills[dragonName].forEach(skill => {
+
+            const skillItem = document.createElement("div");
+
+            skillItem.className = "skill-item";
+
+            skillItem.innerHTML = `
+                <span>${skill[0]} ${skill[1]}</span>
+                <strong>${skill[2]}</strong>
+            `;
+
+            skillsContainer.appendChild(skillItem);
+
+        });
+
+
+        document.getElementById("dragonDetails").style.display =
+            "flex";
     }
 
-    if (dragonName === "Sea Dragon") {
-        element = "🌊 Sea";
-    }
-
-    document.getElementById("detailsDragonElement").textContent =
-        element;
-
-    document.getElementById("dragonDetails").style.display =
-        "flex";
-}
 
     function closeDragonDetails() {
 
